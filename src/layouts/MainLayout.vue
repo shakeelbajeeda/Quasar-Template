@@ -2,45 +2,27 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
+        <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
 
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
+        <q-toolbar-title>Quasar App</q-toolbar-title>
 
         <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
 
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-      class="bg-dark text-white"
-    >
+    <q-drawer v-model="leftDrawerOpen" show-if-above bordered class="bg-dark text-white">
       <q-list>
         <!-- <q-item-label
           header
         >
           Essential Links
-        </q-item-label> -->
+        </q-item-label>-->
 
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
-        <expansionlinks
-        v-for="expansion in expansions"
-        :key="expansion"
-        :expansion_data="expansion"
+        <EssentialLink v-for="link in essentialLinks" :key="link.title" v-bind="link" />
+        <ExpansionLinks
+          v-for="expansion in expansions"
+          :key="expansion"
+          :expansion_data="expansion"
         />
       </q-list>
     </q-drawer>
@@ -53,7 +35,7 @@
 
 <script>
 import EssentialLink from 'components/EssentialLink.vue';
-import expansionlinks from 'src/components/Expansionlink/expansionlinks.vue';
+import ExpansionLinks from 'src/components/Expansionlinks/expansionlinks.vue';
 
 
 const linksList = [
@@ -99,13 +81,13 @@ const linksList = [
     icon: 'favorite',
     link: 'https://awesome.quasar.dev'
   },
-   {
+  {
     title: 'Facebook',
     caption: '',
     icon: 'public',
     link: 'https://facebook.quasar.dev'
   },
-   {
+  {
     title: 'Facebook',
     caption: '',
     icon: 'public',
@@ -122,16 +104,16 @@ export default defineComponent({
 
   components: {
     EssentialLink,
-    expansionlinks
+    ExpansionLinks
   },
 
-  setup () {
+  setup() {
     const leftDrawerOpen = ref(false)
 
     return {
       essentialLinks: linksList,
       leftDrawerOpen,
-      toggleLeftDrawer () {
+      toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value
       }
     }
@@ -139,12 +121,18 @@ export default defineComponent({
   data() {
     return {
       expansions: [
-      {
-        link_icon: "pages",
-        link_label: "Pages",
-        expansion_data_link_icon: "mail",
-        expansion_data_link_label: "Login"
-      },
+        {
+          link_icon: "pages",
+          link_label: "Pages",
+          expansion_data_link_icon: "mail",
+          expansion_data_link_label: "Login"
+        },
+        {
+          link_icon: "pages",
+          link_label: "Pages",
+          expansion_data_link_icon: "mail",
+          expansion_data_link_label: "Login"
+        },
 
       ]
     }
